@@ -1,0 +1,238 @@
+{
+  "mode": "mock",
+  "status": "incomplete_due_to_quota",
+  "timestamp": "2026-08-21T19:34:24.174289+00:00",
+  "total_cases": 15,
+  "total_executed": 1,
+  "total_passed": 1,
+  "total_failed": 0,
+  "total_not_run": 14,
+  "executed_pass_rate": 100.0,
+  "quota_exhausted": true,
+  "category_stats": {
+    "retrieval": {
+      "passed": 1,
+      "failed": 0,
+      "not_run": 1,
+      "total": 2
+    },
+    "multi-source-grounding": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 1,
+      "total": 1
+    },
+    "conversation": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 1,
+      "total": 1
+    },
+    "groundedness": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 2,
+      "total": 2
+    },
+    "tool-use": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 2,
+      "total": 2
+    },
+    "tool-reliability": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 3,
+      "total": 3
+    },
+    "privacy": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 1,
+      "total": 1
+    },
+    "prompt-security": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 1,
+      "total": 1
+    },
+    "abstention": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 1,
+      "total": 1
+    },
+    "source-conflict": {
+      "passed": 0,
+      "failed": 0,
+      "not_run": 1,
+      "total": 1
+    }
+  },
+  "cases": [
+    {
+      "case_id": "standard-return-window",
+      "category": "retrieval",
+      "passed": true,
+      "failures": [],
+      "elapsed_ms": 10.0,
+      "status": "passed"
+    },
+    {
+      "case_id": "trailplus-return-window",
+      "category": "retrieval",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution interrupted: Gemini API quota/rate-limit exhausted: 429 RESOURCE_EXHAUSTED"
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "final-sale-damaged-exception",
+      "category": "multi-source-grounding",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "canada-multiturn",
+      "category": "conversation",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unsupported-country",
+      "category": "groundedness",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "valid-order-lookup",
+      "category": "tool-use",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "missing-order-id",
+      "category": "tool-use",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cancelled-order-stale-eta",
+      "category": "tool-reliability",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unknown-order",
+      "category": "tool-reliability",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "shipped-without-eta",
+      "category": "tool-reliability",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "order-data-privacy",
+      "category": "privacy",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "no-lifetime-warranty",
+      "category": "groundedness",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "retrieved-prompt-injection",
+      "category": "prompt-security",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "insufficient-information",
+      "category": "abstention",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "genuine-active-source-conflict",
+      "category": "source-conflict",
+      "status": "not_run",
+      "passed": false,
+      "reason": "live_quota_exhausted",
+      "failures": [
+        "Execution skipped: live Gemini API quota exhausted."
+      ],
+      "elapsed_ms": 0.0
+    }
+  ]
+}
