@@ -1,0 +1,19 @@
+# Direct runtime dependencies for Aster & Row Reliable RAG Support Agent
+
+# Google Gemini API Client
+google-genai>=1.0.0
+
+# Local dense semantic embeddings (SentenceTransformers automatically manages torch/transformers)
+sentence-transformers>=3.0.0
+
+# Local vector search index
+faiss-cpu>=1.8.0
+
+# Environment variable configuration (.env loading)
+python-dotenv>=1.0.0
+
+# Array operations and vector normalization
+numpy>=1.24.0
+
+# Markdown YAML front matter parsing
+PyYAML>=6.0
