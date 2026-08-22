@@ -243,7 +243,7 @@ python evaluation/run_evaluation.py --live
 | Evaluation Mode | Executed | Passed | Failed | Not Run | Executed Pass Rate | Overall Status |
 |---|---|---|---|---|---|---|
 | **Naive Baseline Semantic Search** | 20 / 20 | 14 | 6 | 0 | **70.0%** | `completed` |
-| **Production System (Mock CI)** | 20 / 20 | 20 | 0 | 0 | **100.0%** | `completed` |
+| **Production System — Deterministic Mock CI** | 20 / 20 | 20 | 0 | 0 | **100.0%** | `completed` |
 | **Live Remote Gemini** | 1 / 15 | 1 | 0 | 14 | **100.0%** (on executed) | `incomplete_due_to_quota` |
 
 *Note on Live Evaluation*: Running the live evaluation suite against the free-tier Gemini API hit the provider request limit (`generate_content_free_tier_requests`, limit 20). The evaluation runner handled the rate-limit gracefully without crashing, preserving completed telemetry in `evaluation/results/latest_live.json` and marking unexecuted cases as `not_run`.
