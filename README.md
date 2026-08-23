@@ -6,6 +6,14 @@ The system combines local metadata-aware Retrieval-Augmented Generation (RAG), d
 
 ---
 
+## Demo Video
+
+[▶️ Watch the Aster & Row Support Agent Demo](https://drive.google.com/file/d/1e13VsvIXFkpgaeZwBzhRbnvbtUjpnDVz/view?usp=sharing)
+
+The demo shows the interactive support agent, knowledge retrieval, order lookup, grounded responses, conflict/insufficient-information handling, and the deterministic mock evaluation.
+
+---
+
 ## 1. Overview
 
 E-commerce AI support systems frequently fail due to:
