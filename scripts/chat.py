@@ -1,5 +1,6 @@
 """Interactive CLI for the Aster & Row Customer Support Agent."""
 
+import argparse
 from pathlib import Path
 import sys
 import uuid
@@ -13,6 +14,7 @@ if str(repo_root) not in sys.path:
 from app.agent.orchestrator import AgentOrchestrator, AgentTurnResponse
 from app.orders.service import OrderService
 from app.rag.vector_store import VectorStore
+from evaluation.run_evaluation import MockGeminiEvaluatorClient
 
 
 def format_turn_output(response: AgentTurnResponse) -> str:
@@ -38,15 +40,18 @@ def format_turn_output(response: AgentTurnResponse) -> str:
 class ChatCLI:
     """CLI session manager."""
 
-    def __init__(self, orchestrator: Optional[AgentOrchestrator] = None) -> None:
+    def __init__(self, orchestrator: Optional[AgentOrchestrator] = None, use_mock: bool = False) -> None:
         if orchestrator is None:
             vector_store = VectorStore.load()
             order_service = OrderService()
+            gemini_client = MockGeminiEvaluatorClient() if use_mock else None
             orchestrator = AgentOrchestrator(
                 vector_store=vector_store,
                 order_service=order_service,
+                gemini_client=gemini_client,
             )
         self.orchestrator = orchestrator
+        self.use_mock = use_mock
         self.session_id = self._generate_session_id()
 
     @staticmethod
@@ -83,15 +88,27 @@ class ChatCLI:
             self.reset_session()
             return "Session cleared. Started a fresh conversation.", False
 
-        response = self.orchestrator.process_turn(
-            message=text,
-            session_id=self.session_id,
-        )
-        return format_turn_output(response), False
+        try:
+            response = self.orchestrator.process_turn(
+                message=text,
+                session_id=self.session_id,
+            )
+            return format_turn_output(response), False
+        except Exception as e:
+            err_msg = str(e).lower()
+            if "429" in err_msg or "resource_exhausted" in err_msg or "quota" in err_msg:
+                return (
+                    "Agent: Live Gemini free-tier quota is currently exhausted (HTTP 429). "
+                    "You can run with 'python scripts/chat.py --mock' for offline evaluation.\n\n"
+                    "Human handoff recommended.",
+                    False,
+                )
+            return f"Agent: An error occurred while processing your request: {e}\n\nHuman handoff recommended.", False
 
     def run(self) -> None:
         """Start the interactive REPL loop."""
-        print("Aster & Row Support Agent")
+        mode_str = " (Mock Mode)" if self.use_mock else ""
+        print(f"Aster & Row Support Agent{mode_str}")
         print("Type /help for commands.\n")
 
         while True:
@@ -111,7 +128,11 @@ class ChatCLI:
 
 
 def main() -> None:
-    cli = ChatCLI()
+    parser = argparse.ArgumentParser(description="Aster & Row Support Agent Interactive CLI")
+    parser.add_argument("--mock", "-m", action="store_true", help="Run in deterministic mock mode without live Gemini API quota")
+    args = parser.parse_args()
+
+    cli = ChatCLI(use_mock=args.mock)
     cli.run()
 
 

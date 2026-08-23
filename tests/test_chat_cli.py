@@ -147,6 +147,14 @@ class TestChatCLI(unittest.TestCase):
         self.assertIsNone(output)
         self.assertFalse(should_exit)
 
+    def test_quota_error_handling(self):
+        """HTTP 429 quota exhaustion produces helpful guidance instead of crashing."""
+        self.mock_orchestrator.process_turn.side_effect = Exception("429 RESOURCE_EXHAUSTED: Quota exceeded")
+        output, should_exit = self.cli.process_user_input("What is the return policy?")
+        self.assertFalse(should_exit)
+        self.assertIn("Live Gemini free-tier quota is currently exhausted", output)
+        self.assertIn("Human handoff recommended.", output)
+
 
 if __name__ == "__main__":
     unittest.main()
